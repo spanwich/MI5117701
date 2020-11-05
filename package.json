@@ -1,0 +1,24 @@
+{
+  "name": "mi5117701",
+  "version": "1.0.0",
+  "description": "Web service for MI5117701 class.",
+  "main": "app.js",
+  "scripts": {
+    "test": "node app.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/xalanaseon/MI5117701.git"
+  },
+  "keywords": [
+    "MI5117701",
+    "web-service",
+    "nodejs"
+  ],
+  "author": "Saranachon Iammongkol",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/xalanaseon/MI5117701/issues"
+  },
+  "homepage": "https://github.com/xalanaseon/MI5117701#readme"
+}
