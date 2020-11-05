@@ -1,0 +1,47 @@
+﻿extends layout
+
+block content
+  h1= title
+  p Welcome to #{title}
+
+  form(method='POST' action='#' name="createForm" id="createForm")
+    #container.col
+        div.row
+            div.col-md-3    
+                label(for='create') CREATE:
+                input(type='button', value='Go!' onclick='page_create()').btn.btn-info.align-middle
+            div.col-md-3    
+                label(for='read') READ:
+                input(type='button', value='Go!' onclick='page_read()').btn.btn-primary.align-middle
+            div.col-md-3    
+                label(for='update') UPDATE:
+                input(type='button', value='Go!' onclick='page_update()').btn.btn-warning.align-middle
+            div.col-md-3
+                label(for='delete') DELETE:
+                input(type='button', value='Go!' onclick='page_delete()').btn.btn-danger.align-middle
+        div.row
+            div.col-md-3    
+                label(for='title') TITLE:
+                input#name.form-control(type='text', placeholder='Input book title' name='title')
+            div.col-md-3    
+                label(for='author') AUTHOR:
+                input#name.form-control(type='text', placeholder='Input book author' name='author')
+            div.col-md-3    
+                label(for='isbn') ISBN:
+                input#name.form-control(type='text', placeholder='Input book isbn' name='isbn')
+            div.col-md-3
+                label(for='publisher') PUBLISHER:
+                input#name.form-control(type='text', placeholder='Input book publisher' name='publisher')
+        div.row
+            div.col-md-3
+                label(for='publication_year') PUBLICATION YEAR:
+                input#name.form-control(type='text', placeholder='Input book publication year' name='publication_year')
+            div.col-md-3
+                label(for='last_modified_date') LAST MODIFIED:
+                input#name.form-control(type='text', placeholder='Input book last modified date' name='last_modified_date')
+            div.col-md-3
+                label(for='created_date') CREATE DATE:
+                input#name.form-control(type='text', placeholder='Input book last created date' name='created_date')
+            div.col-md-3.text-center
+                input(type='button', value='Submit', onclick='submit_create()').btn.btn-light.align-middle
+

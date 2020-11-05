@@ -1,0 +1,46 @@
+﻿extends layout
+
+block content
+  h1= title
+  p Welcome to #{title}
+
+  form(method='POST' action='#' name="readForm" id="readForm")
+    #container.col
+        div.row
+            div.col-md-3    
+                label(for='create') CREATE:
+                input(type='button', value='Go!' onclick='page_create()').btn.btn-info.align-middle
+            div.col-md-3    
+                label(for='read') READ:
+                input(type='button', value='Go!' onclick='page_read()').btn.btn-primary.align-middle
+            div.col-md-3    
+                label(for='update') UPDATE:
+                input(type='button', value='Go!' onclick='page_update()').btn.btn-warning.align-middle
+            div.col-md-3
+                label(for='delete') DELETE:
+                input(type='button', value='Go!' onclick='page_delete()').btn.btn-danger.align-middle
+        div.row
+            div.col-md-3
+                label(for='id') BOOK ID:
+                input#name.form-control(type='text', placeholder='Input book last created date' name='created_date')
+            div.col-md-3.text-center
+                input(type='submit', value='Submit').btn.btn-light.align-middle
+
+        div#payloader.row
+            table(style='width:100%', border='1', id='bookTable')
+                thead
+                    tr
+                        th Id
+                        th Title
+                        th Author
+                        th ISBN
+                        th Publisher
+                        th Publication_Year
+                        th Last_Modified
+                        th Created_Date
+                        th Edit/Delete
+						
+  <!-- Modal -->
+  div#editModal.modal
+    div.modal-dialog
+        div.modal-content
