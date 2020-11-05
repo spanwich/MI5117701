@@ -19,13 +19,6 @@ block content
             div.col-md-3
                 label(for='delete') DELETE:
                 input(type='button', value='Go!' onclick='page_delete()').btn.btn-danger.align-middle
-        div.row
-            div.col-md-3
-                label(for='id') BOOK ID:
-                input#name.form-control(type='text', placeholder='Input book last created date' name='created_date')
-            div.col-md-3.text-center
-                input(type='submit', value='Submit').btn.btn-light.align-middle
-
         div#payloader.row
             table(style='width:100%', border='1', id='bookTable')
                 thead
@@ -42,5 +35,36 @@ block content
 						
   <!-- Modal -->
   div#editModal.modal
-    div.modal-dialog
+    div.modal-dialog.modal-xl
         div.modal-content
+            div.modal-header
+                h3.modal-title Edit book profile
+            div.modal-body
+                form(method='POST' action='#' name="deleteForm" id="deleteForm")
+                div.row
+                    div.col-md-3    
+                        label(for='title') TITLE:
+                        input#title.form-control(type='text', placeholder='Input book title' name='title')
+                    div.col-md-3    
+                        label(for='author') AUTHOR:
+                        input#author.form-control(type='text', placeholder='Input book author' name='author')
+                    div.col-md-3    
+                        label(for='isbn') ISBN:
+                        input#isbn.form-control(type='text', placeholder='Input book isbn' name='isbn')
+                    div.col-md-3
+                        label(for='publisher') PUBLISHER:
+                        input#publisher.form-control(type='text', placeholder='Input book publisher' name='publisher')
+                div.row
+                    div.col-md-3
+                        label(for='publication_year') PUBLICATION YEAR:
+                        input#publication_year.form-control(type='text', placeholder='Input book publication year' name='publication_year')
+                    div.col-md-3
+                        label(for='last_modified_date') LAST MODIFIED:
+                        input#last_modified_date.form-control(type='text', placeholder='Input book last modified date' name='last_modified_date')
+                    div.col-md-3
+                        label(for='created_date') CREATE DATE:
+                        input#created_date.form-control(type='text', placeholder='Input book last created date' name='created_date')
+            div.modal-footer
+                input#edit_id(type='hidden', value='id')
+                input#edit_submit(type='button', value='Submit').btn.btn-success.align-middle
+                input(type='button', value='Close', data-dismiss='modal').btn.btn-dark.align-middle

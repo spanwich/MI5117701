@@ -66,7 +66,7 @@ router.put('/:id', function (req, res) {
     mariadb.createConnection({host: 'localhost', user: 'xalanaseon', password: '48rH2%36#', database: 'awt'})
     .then(conn => {
       console.log(postData);
-      conn.query({ namedPlaceholders: true, sql: "UPDATE books SET title=:title, author=:author, isdb=:isbn, publisher=:publisher, publication_year=:publication_year, last_modified_date=:last_modified_date, updated_at=:updated_at WHERE id=:id"},
+      conn.query({ namedPlaceholders: true, sql: "UPDATE books SET title=:title, author=:author, isbn=:isbn, publisher=:publisher, publication_year=:publication_year, last_modified_date=:last_modified_date, updated_at=:updated_at WHERE id=:id"},
         postData, function (error, results, fields) {
            if (error) throw error;
            console.log(results.insertId); // Auto increment id

@@ -24,75 +24,52 @@ function submit_create() {
 	});
 };
 
-function submit_read() {
-	var form=$("#readForm");
-	$.ajax({
-	    url: '/book/',
-	    type: 'GET',
-		data:form.serialize(),
-		success: function(response){
-			alert(JSON.stringify(response));
-			console.log(response);  
-		}
-	});
-};
-
-function submit_detail() {
-	var form=$("#readForm");
-	$.ajax({
-	    url: '/book/' + $('input[name ="id"]'),
-	    type: 'GET',
-		data:form.serialize(),
-		success: function(response){
-			alert(JSON.stringify(response));
-			console.log(response);  
-		}
-	});
-};
-
-function submit_update() {
-	var form=$("#updateForm");
-	$.ajax({
-	    url: '/book/' + $('input[name ="id"]'),
-	    type: 'PUT',
-		data:form.serialize(),
-		success: function(response){
-			alert(JSON.stringify(response));
-			console.log(response);  
-		}
-	});
-};
-
-function submit_delete() {
-	var form=$("#deleteForm");
-	$.ajax({
-	    url: '/book/' + $('input[name ="id"]'),
-	    type: 'DELETE',
-		data:form.serialize(),
-		success: function(response){
-			alert(JSON.stringify(response));
-			console.log(response);  
-		}
-	});
-};
-
 
 
 $(document).ready(function() {
 
+    $('#edit_submit').on('click', function (e) {
+        e.preventDefault();
+		console.log($('#editModal'))
+		//$('#editModal').modal("show");
+		var book = new Object();  
+        book.title = $('#title').val();  
+        book.author = $('#author').val();  
+		book.isbn = $('#isbn').val();
+		book.publisher = $('#publisher').val();
+		book.publication_year = $('#publication_year').val();
+		book.last_modified_date = $('#last_modified_date').val();
+		book.created_date = $('#created_date').val();
+
+		console.log('editing' + $('#edit_id').val());
+		$.ajax({
+			url: '/book/' + $('#edit_id').val(),
+			type: 'PUT',
+			data: book,
+			success: function(response){
+				alert(JSON.stringify(response));
+				console.log(response);  
+				location.reload();
+		}
+	});
+    });
+
 	// Edit record
-    //$('#bookTable').on('click', 'a.editor_edit', function (e) {
-    //    e.preventDefault();
-	//	var delete_id = $(this).closest('tr')[0].firstChild.innerText;
-	//	$.ajax({
-	//		url: '/book/' + delete_id,
-	//		type: 'PUT',
-	//		success: function(response){
-	//			alert(JSON.stringify(response));
-	//			console.log(response);  
-	//		}
-	//	});
-    //});
+    $('#bookTable').on('click', 'a.editor_edit', function (e) {
+        e.preventDefault();
+		console.log($('#editModal'))
+		//$('#editModal').modal("show");
+		console.log($(this).closest('tr')[0].childNodes);
+		$('#edit_id').val($(this).closest('tr')[0].childNodes[0].innerText);
+		$('#title').val($(this).closest('tr')[0].childNodes[1].innerText);
+		$('#author').val($(this).closest('tr')[0].childNodes[2].innerText);
+		$('#isbn').val($(this).closest('tr')[0].childNodes[3].innerText);
+		$('#publisher').val($(this).closest('tr')[0].childNodes[4].innerText);
+		$('#publication_year').val($(this).closest('tr')[0].childNodes[5].innerText);
+		$('#last_modified_date').val($(this).closest('tr')[0].childNodes[6].innerText);
+		$('#created_date').val($(this).closest('tr')[0].childNodes[7].innerText);
+
+    });
  
     // Delete a record
     $('#bookTable').on('click', 'a.editor_remove', function (e) {
