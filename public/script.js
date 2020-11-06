@@ -14,7 +14,7 @@ function page_delete() {
 function submit_create() {
 	var form=$("#createForm");
 	$.ajax({
-	    url: '/book/',
+	    url: '/api/book/',
 	    type: 'POST',
 		data:form.serialize(),
 		success: function(response){
@@ -44,7 +44,7 @@ $(document).ready(function() {
 
 		console.log('editing' + $('#edit_id').val());
 		$.ajax({
-			url: '/book/' + $('#edit_id').val(),
+			url: '/api/book/' + $('#edit_id').val(),
 			type: 'PUT',
 			data: book,
 			success: function(response){
@@ -78,7 +78,7 @@ $(document).ready(function() {
 		console.log('deleting' + $(this).closest('tr')[0].firstChild.innerText);
 		var delete_id = $(this).closest('tr')[0].firstChild.innerText;
 		$.ajax({
-			url: '/book/' + delete_id,
+			url: '/api/book/' + delete_id,
 			type: 'DELETE',
 			success: function(response){
 				alert(JSON.stringify(response));
@@ -91,7 +91,7 @@ $(document).ready(function() {
 	table = $('#bookTable').DataTable({
 		"ajax": {
 			"type": "GET",
-			"url": '/book',
+			"url": '/api/book',
 			"dataSrc": ""
 		},
 		columns: [
