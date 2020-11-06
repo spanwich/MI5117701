@@ -8,19 +8,6 @@ block content
     #container.col
         div.row
             div.col-md-3    
-                label(for='create') CREATE:
-                input(type='button', value='Go!' onclick='page_create()').btn.btn-info.align-middle
-            div.col-md-3    
-                label(for='read') READ:
-                input(type='button', value='Go!' onclick='page_read()').btn.btn-primary.align-middle
-            div.col-md-3    
-                label(for='update') UPDATE:
-                input(type='button', value='Go!' onclick='page_update()').btn.btn-warning.align-middle
-            div.col-md-3
-                label(for='delete') DELETE:
-                input(type='button', value='Go!' onclick='page_delete()').btn.btn-danger.align-middle
-        div.row
-            div.col-md-3    
                 label(for='title') TITLE:
                 input#name.form-control(type='text', placeholder='Input book title' name='title')
             div.col-md-3    
@@ -42,6 +29,6 @@ block content
             div.col-md-3
                 label(for='created_date') CREATE DATE:
                 input#name.form-control(type='text', placeholder='Input book last created date' name='created_date')
-            div.col-md-3.text-center
-                input(type='button', value='Submit', onclick='submit_create()').btn.btn-light.align-middle
+            div.col-md-3.text-center.align-self-center
+                input(type='button', value='Submit', onclick='submit_create()').btn.btn-success
 

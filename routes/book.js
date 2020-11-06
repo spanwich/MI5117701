@@ -14,6 +14,11 @@ const conn = mariadb.createConnection({
      connectionLimit: 5
 });
 
+const db_host = process.env.DB_HOST; 
+const db_user = process.env.DB_USER; 
+const db_pswd = process.env.DB_PSWD; 
+const db_name = process.env.DB_NAME; 
+
 var respond_code = "";
 
 /* POST book insert. */
@@ -24,7 +29,8 @@ router.post('/', function (req, res) {
     postData.updated_at = new Date();
     postData.last_modified_date = new Date();
     postData.created_date = new Date();
-    mariadb.createConnection({host: 'localhost', user: 'xalanaseon', password: '48rH2%36#', database: 'awt'})
+	console.log(db_user);
+    mariadb.createConnection({host: db_host, user: db_user, password: db_pswd, database: db_name})
     .then(conn => {
       console.log(postData);
       conn.query({ namedPlaceholders: true, sql: "INSERT INTO books VALUES (0, :title, :author, :isbn, :publisher, :publication_year, :last_modified_date, :created_date, :created_at, :updated_at)"},
@@ -63,7 +69,7 @@ router.put('/:id', function (req, res) {
     postData.last_modified_date = new Date();
     postData.created_date = new Date();
 	postData.id = req.params.id;
-    mariadb.createConnection({host: 'localhost', user: 'xalanaseon', password: '48rH2%36#', database: 'awt'})
+    mariadb.createConnection({host: db_host, user: db_user, password: db_pswd, database: db_name})
     .then(conn => {
       console.log(postData);
       conn.query({ namedPlaceholders: true, sql: "UPDATE books SET title=:title, author=:author, isbn=:isbn, publisher=:publisher, publication_year=:publication_year, last_modified_date=:last_modified_date, updated_at=:updated_at WHERE id=:id"},
@@ -102,7 +108,7 @@ router.delete('/:id', function (req, res) {
     postData.last_modified_date = new Date();
     postData.created_date = new Date();
 	postData.id = req.params.id;
-    mariadb.createConnection({host: 'localhost', user: 'xalanaseon', password: '48rH2%36#', database: 'awt'})
+    mariadb.createConnection({host: db_host, user: db_user, password: db_pswd, database: db_name})
     .then(conn => {
       console.log(postData);
       conn.query({ namedPlaceholders: true, sql: "DELETE FROM books WHERE id=:id"},
@@ -141,7 +147,7 @@ router.get('/:id', function (req, res) {
     postData.last_modified_date = new Date();
     postData.created_date = new Date();
 	postData.id = req.params.id;
-    mariadb.createConnection({host: 'localhost', user: 'xalanaseon', password: '48rH2%36#', database: 'awt'})
+    mariadb.createConnection({host: db_host, user: db_user, password: db_pswd, database: db_name})
     .then(conn => {
       console.log(postData);
       conn.query({ namedPlaceholders: true, sql: "SELECT * FROM books WHERE id=:id"},
@@ -180,7 +186,7 @@ router.get('/', function (req, res) {
     postData.last_modified_date = new Date();
     postData.created_date = new Date();
 	postData.id = req.params.id;
-    mariadb.createConnection({host: 'localhost', user: 'xalanaseon', password: '48rH2%36#', database: 'awt'})
+    mariadb.createConnection({host: db_host, user: db_user, password: db_pswd, database: db_name})
     .then(conn => {
       console.log(postData);
       conn.query({ namedPlaceholders: true, sql: "select * FROM books"},

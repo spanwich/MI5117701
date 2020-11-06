@@ -20,6 +20,7 @@ function submit_create() {
 		success: function(response){
 			alert(JSON.stringify(response));
 			console.log(response);  
+			document.location.href="/";
 		}
 	});
 };
@@ -105,7 +106,7 @@ $(document).ready(function() {
 			{
                 data: null,
                 className: "center",
-                defaultContent: '<a href="" class="editor_edit btn btn-warning" data-toggle="modal" data-target="#editModal">Edit</a> / <a href="" class="editor_remove btn btn-danger">Delete</a>'
+                defaultContent: '<a href="" class="editor_edit btn btn-warning" data-toggle="modal" data-target="#editModal">Edit</a><a href="" class="editor_remove btn btn-danger">Delete</a>'
             }
 		]
 	});

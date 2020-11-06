@@ -1,19 +1,61 @@
 ﻿extends layout
 
 block content
-  h1= title
-  p Welcome to #{title}
+  form(method='POST' action='#' name="readForm" id="readForm")
     #container.col
         div.row
-            div.col-md-3    
-                label(for='create') CREATE:
-                input(type='button', value='Go!' onclick='page_create()').btn.btn-info.align-middle
-            div.col-md-3    
-                label(for='read') READ:
-                input(type='button', value='Go!' onclick='page_read()').btn.btn-primary.align-middle
-            div.col-md-3    
-                label(for='update') UPDATE:
-                input(type='button', value='Go!' onclick='page_update()').btn.btn-warning.align-middle
-            div.col-md-3
-                label(for='delete') DELETE:
-                input(type='button', value='Go!' onclick='page_delete()').btn.btn-danger.align-middle
+            div.col-md-6
+                h1= title
+                p Welcome to #{title}
+            div.col-md-6  
+                div.mx-auto.text-right
+                    input(type='button', value='NEW BOOK!' onclick='page_create()').btn.btn-info
+        div#payloader.row
+            table(style='width:100%', border='1', id='bookTable')
+                thead
+                    tr
+                        th Id
+                        th Title
+                        th Author
+                        th ISBN
+                        th Publisher
+                        th Publication_Year
+                        th Last_Modified
+                        th Created_Date
+                        th Edit/Delete
+						
+  <!-- Modal -->
+  div#editModal.modal
+    div.modal-dialog.modal-xl
+        div.modal-content
+            div.modal-header
+                h3.modal-title Edit book profile
+            div.modal-body
+                form(method='POST' action='#' name="deleteForm" id="deleteForm")
+                div.row
+                    div.col-md-3    
+                        label(for='title') TITLE:
+                        input#title.form-control(type='text', placeholder='Input book title' name='title')
+                    div.col-md-3    
+                        label(for='author') AUTHOR:
+                        input#author.form-control(type='text', placeholder='Input book author' name='author')
+                    div.col-md-3    
+                        label(for='isbn') ISBN:
+                        input#isbn.form-control(type='text', placeholder='Input book isbn' name='isbn')
+                    div.col-md-3
+                        label(for='publisher') PUBLISHER:
+                        input#publisher.form-control(type='text', placeholder='Input book publisher' name='publisher')
+                div.row
+                    div.col-md-3
+                        label(for='publication_year') PUBLICATION YEAR:
+                        input#publication_year.form-control(type='text', placeholder='Input book publication year' name='publication_year')
+                    div.col-md-3
+                        label(for='last_modified_date') LAST MODIFIED:
+                        input#last_modified_date.form-control(type='text', placeholder='Input book last modified date' name='last_modified_date')
+                    div.col-md-3
+                        label(for='created_date') CREATE DATE:
+                        input#created_date.form-control(type='text', placeholder='Input book last created date' name='created_date')
+            div.modal-footer
+                input#edit_id(type='hidden', value='id')
+                input#edit_submit(type='button', value='Submit').btn.btn-success.align-middle
+                input(type='button', value='Close', data-dismiss='modal').btn.btn-dark.align-middle

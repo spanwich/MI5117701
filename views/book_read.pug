@@ -8,17 +8,9 @@ block content
     #container.col
         div.row
             div.col-md-3    
-                label(for='create') CREATE:
-                input(type='button', value='Go!' onclick='page_create()').btn.btn-info.align-middle
+                input(type='button', value='CREATE!' onclick='page_create()').btn.btn-info.align-middle
             div.col-md-3    
-                label(for='read') READ:
-                input(type='button', value='Go!' onclick='page_read()').btn.btn-primary.align-middle
-            div.col-md-3    
-                label(for='update') UPDATE:
-                input(type='button', value='Go!' onclick='page_update()').btn.btn-warning.align-middle
-            div.col-md-3
-                label(for='delete') DELETE:
-                input(type='button', value='Go!' onclick='page_delete()').btn.btn-danger.align-middle
+                input(type='button', value='VIEW!' onclick='page_read()').btn.btn-primary.align-middle
         div#payloader.row
             table(style='width:100%', border='1', id='bookTable')
                 thead
