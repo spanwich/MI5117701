@@ -16,19 +16,42 @@ function submit_create() {
 	$.ajax({
 	    url: '/api/book/',
 	    type: 'POST',
+		headers: {"Authorization": getCookie('jwt')},
 		data:form.serialize(),
 		success: function(response){
 			alert(JSON.stringify(response));
 			console.log(response);  
 			document.location.href="/";
+		},
+		error: function(response){
+			window.alert("Session Expired!");
+			document.cookie = 'jwt=; Path=/; Expires=Thu, 01 Jan 1970 00:00:01 GMT;';
+			localStorage.removeItem('jwt')
+			sessionStorage.removeItem('jwt')
+			document.location.href="/";
 		}
 	});
 };
 
-
+function getCookie(cname) {
+  var name = cname + "=";
+  var decodedCookie = decodeURIComponent(document.cookie);
+  var ca = decodedCookie.split(';');
+  for(var i = 0; i <ca.length; i++) {
+    var c = ca[i];
+    while (c.charAt(0) == ' ') {
+      c = c.substring(1);
+    }
+    if (c.indexOf(name) == 0) {
+      return c.substring(name.length, c.length);
+    }
+  }
+  return "";
+}
 
 $(document).ready(function() {
-
+	var ck = getCookie('jwt');
+	//console.log(ck);
     $('#edit_submit').on('click', function (e) {
         e.preventDefault();
 		console.log($('#editModal'))
@@ -47,12 +70,18 @@ $(document).ready(function() {
 			url: '/api/book/' + $('#edit_id').val(),
 			type: 'PUT',
 			data: book,
+			headers: {"Authorization": getCookie('jwt')},
 			success: function(response){
 				alert(JSON.stringify(response));
 				console.log(response);  
-				location.reload();
-		}
-	});
+				location.reload()
+			},
+			error: function(response){
+				document.cookie = 'jwt=; Path=/; Expires=Thu, 01 Jan 1970 00:00:01 GMT;';
+				localStorage.removeItem('jwt')
+				sessionStorage.removeItem('jwt')
+			}
+		});
     });
 
 	// Edit record
@@ -80,10 +109,16 @@ $(document).ready(function() {
 		$.ajax({
 			url: '/api/book/' + delete_id,
 			type: 'DELETE',
+			headers: {"Authorization": getCookie('jwt')},
 			success: function(response){
 				alert(JSON.stringify(response));
 				console.log(response);  
 				location.reload();
+			},
+			error: function(response){
+				document.cookie = 'jwt=; Path=/; Expires=Thu, 01 Jan 1970 00:00:01 GMT;';
+				localStorage.removeItem('jwt')
+				sessionStorage.removeItem('jwt')
 			}
 		});
     });
@@ -91,8 +126,19 @@ $(document).ready(function() {
 	table = $('#bookTable').DataTable({
 		"ajax": {
 			"type": "GET",
+			"headers": {"Authorization": getCookie('jwt')},
 			"url": '/api/book',
-			"dataSrc": ""
+			"dataSrc": "",
+			"error": function (xhr, error, code)
+            {
+                console.log(xhr);
+                console.log(code);
+				window.alert("Session Expired!");
+				document.cookie = 'jwt=; Path=/; Expires=Thu, 01 Jan 1970 00:00:01 GMT;';
+				localStorage.removeItem('jwt')
+				sessionStorage.removeItem('jwt')
+				document.location.href="/";
+            }
 		},
 		columns: [
 			{ data: "id" },

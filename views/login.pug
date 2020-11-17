@@ -1,0 +1,21 @@
+﻿extends layout
+
+block content
+  form(method='POST' action='#' name="loginForm" id="loginForm")
+    div#login.container
+      fieldset
+        legend: strong.text-info Login page
+
+        div.form-group
+          label Username:
+          input.form-control(name='username', value=username, autofocus)
+
+        div.form-group
+          label Password:
+          input.form-control(name='password', type='password')
+
+        div.form-actions
+          input.btn.btn-primary(type='button', value='Login', onclick='submit_login()')
+  script
+    include ../public/script2.js
+
