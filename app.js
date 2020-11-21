@@ -9,11 +9,13 @@ const logger = require('morgan');
 const session = require('express-session');
 const cookieParser = require('cookie-parser');
 const bodyParser = require('body-parser');
+const jwt = require('jsonwebtoken');
 
+//Routes
 const routes = require('./routes/index');
 const users = require('./routes/users');
 const database = require('./routes/database');
-
+const book = require('./routes/books');
 const app = express();
 
 const {login, refresh} = require('./authentication')
@@ -116,7 +118,7 @@ app.get('/auth/google/callback', passport.authenticate('google', { scope: ['emai
 				res.sendStatus(500);
 			} else {
 				//res.json({token});
-				res.cookie("jwt", token, {secure: false, httpOnly: false})
+				res.cookie("jwt", token, {secure: true, httpOnly: true})
 				res.redirect(302, '/');
 				//res.send()
 			}
