@@ -41,14 +41,14 @@ var GoogleStrategy = require( 'passport-google-oauth2' ).Strategy;
   }
 )); */
 passport.use(new GoogleStrategy({
-	clientID: process.env.GOOGLE_CLIENT_ID,
-	clientSecret: process.env.GOOGLE_CLIENT_SECRET,
-	callbackURL: 'https://my-awesome-site.com/login/google/return'
-},
+		clientID: process.env.GOOGLE_CLIENT_ID,
+		clientSecret: process.env.GOOGLE_CLIENT_SECRET,
+		callbackURL: 'https://mi5117701.herokuapp.com/auth/google/callback'
+	},
 	function(accessToken, refreshToken, profile, done) {
 		
-	});
-);
+	}
+));
 // uncomment after placing your favicon in /public
 //app.use(favicon(__dirname + '/public/favicon.ico'));
 app.use(session({
