@@ -24,7 +24,7 @@ app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'pug');
 //set passport strategy
 var GoogleStrategy = require( 'passport-google-oauth2' ).Strategy;
-passport.use(new GoogleStrategy({
+/* passport.use(new GoogleStrategy({
     clientID:     process.env.GOOGLE_CLIENT_ID,
     clientSecret: process.env.GOOGLE_CLIENT_SECRET,
     callbackURL: "https://mi5117701.herokuapp.com/auth/google/callback",
@@ -33,12 +33,21 @@ passport.use(new GoogleStrategy({
   function(request, accessToken, refreshToken, profile, done) {
 	console.log("access token: ", accessToken);
 	console.log(profile.id);
-	var user = {'id':profile.id }
+	user = {'id':profile.id }
     //User.findOrCreate({ googleId: profile.id }, function (err, user) {
     //  return done(err, user);
     //});
 	return done(null, user);
   }
+)); */
+passport.use(new GoogleStrategy({
+	clientID: process.env.GOOGLE_CLIENT_ID,
+	clientSecret: process.env.GOOGLE_CLIENT_SECRET,
+	callbackURL: "https://mi5117701.herokuapp.com/auth/google/callback"
+},
+	function(accessToken, refreshToken, profile, done) {
+		
+	});
 ));
 // uncomment after placing your favicon in /public
 //app.use(favicon(__dirname + '/public/favicon.ico'));
@@ -62,7 +71,7 @@ app.use('/users', users);
 app.use('/api/database',verify, database);
 app.use('/login', login)
 app.use('/refrsh', refresh)
-
+/* 
 //app.use('/auth/google',google);
 app.get('/auth/google',
   passport.authenticate('google', { scope: ['https://www.googleapis.com/auth/plus.login','email','openid','profile'] }));
@@ -73,7 +82,18 @@ app.get('/auth/google/callback',
 	console.log(req);
     res.redirect('/');
   });
-  
+   */
+app.get('/auth/google', passport.authenticate('google', { scope: ['email', 'profile'] }), (req, res) => {
+	console.log("Logging in via Google");
+});
+
+app.get('/auth/google/callback', passport.authenticate('google', { scope: ['email', 'profile'] }), (req, res) => {
+	// Passportjs sends back the user attached to the request object, I set it as part of the session
+	req.session.user = req.user;
+	// Redirect to budgeteer after the session has been set
+	res.redirect("/");
+});   
+   
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
     var err = new Error('Not Found');
