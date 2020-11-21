@@ -40,6 +40,7 @@ var GoogleStrategy = require( 'passport-google-oauth2' ).Strategy;
 	return done(null, user);
   }
 )); */
+
 passport.use(new GoogleStrategy({
 		clientID: process.env.GOOGLE_CLIENT_ID,
 		clientSecret: process.env.GOOGLE_CLIENT_SECRET,
@@ -50,7 +51,11 @@ passport.use(new GoogleStrategy({
 			id : profile.id,
 			token : accessToken
 		};
-		done(null, user);
+		try {
+			done(null, user);
+		} catch (error) {
+			console.log(error);
+		}
 	}
 ));
 // uncomment after placing your favicon in /public
@@ -92,6 +97,7 @@ app.get('/auth/google', passport.authenticate('google', { scope: ['email', 'prof
 });
 
 app.get('/auth/google/callback', passport.authenticate('google', { scope: ['email', 'profile'] }), (req, res) => {
+	console.log('Callback landed');
 	// Passportjs sends back the user attached to the request object, I set it as part of the session
 	req.session.user = req.user;
 	// Redirect to budgeteer after the session has been set
@@ -112,6 +118,7 @@ console.log(process.env);
 if (app.get('env') === 'development') {
     app.use(function (err, req, res, next) {
         res.status(err.status || 500);
+		console.lof(err;
         res.render('error', {
             message: err.message,
             error: err
@@ -123,9 +130,10 @@ if (app.get('env') === 'development') {
 // no stacktraces leaked to user
 app.use(function (err, req, res, next) {
     res.status(err.status || 500);
+	console.lof(err;
     res.render('error', {
-        message: err,
-        error: {}
+        message: err.message,
+        error: err
     });
 });
 
