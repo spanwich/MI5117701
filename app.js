@@ -128,6 +128,7 @@ app.get('/auth/google/callback', passport.authenticate('google', { scope: ['emai
    
 app.get('/logout', function (req, res){
   req.session.destroy(function (err) {
+	res.clearCookie("jwt");
     res.redirect('/'); //Inside a callback… bulletproof!
   });
 });
