@@ -18,45 +18,12 @@ block content
           div.row
             div.col-md-1
               input.btn.btn-primary(type='button', value='Login', onclick='submit_login()')
-            div.col-md-1
+          div.row
             div.col-md-3 
-              div#my-signin2
-
-  .row
-    .col-sm-12
-      form.md-float-material.form-material(method='POST' action='#' name="loginForm" id="loginForm")
-        .auth-box.card
-          .card-block
-            .row
-              .col-md-12
-                h3.text-center.heading Create your BBBootstrap account. It&rsquo;s free and only takes a minute.
-            .form-group.form-primary
-              input#first_name.form-control(type='text' name='first_name' value='' placeholder='Display name')
-            .form-group.form-primary
-              input#username.form-control(name='username', value=username, autofocus)
-            .form-group.form-primary
-              input#password.form-control(type='password' name='password' placeholder='Password' value='')
-            .form-group.form-primary
-              input#password_confirm.form-control(type='password' name='password_confirm' placeholder='Repeat password' value='')
-            .row
-              .col-md-12
-                input.btn.btn-primary.btn-md.btn-block.waves-effect.text-center.m-b-20(type='button', value='Login', onclick='submit_login()')
-                // <button type="button" class="btn btn-primary btn-md btn-block waves-effect text-center m-b-20"><i class="fa fa-lock"></i> Signup Now </button>
-            .or-container
-              .line-separator
-              .or-label or
-              .line-separator
-            .row
-              .col-md-12
-                a.btn.btn-lg.btn-google.btn-block.text-uppercase.btn-outline(href='#')
+              a.btn.btn-lg.btn-google.btn-block.text-uppercase.btn-outline(href='/auth/google')
                   img(src='https://img.icons8.com/color/16/000000/google-logo.png')
-                  |  Signup Using Google
-            br
-            p.text-inverse.text-center
-              | Already have an account? 
-              a(href='<?= base_url() ?>auth/login' data-abc='true') Login
-		  
-        
+                  |  Login Using Google
+       
   script
     include ../public/script2.js
 

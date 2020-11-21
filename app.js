@@ -54,7 +54,7 @@ app.use('/refrsh', refresh)
 
 //app.use('/auth/google',google);
 app.get('/auth/google', function(request, response, next) {
-    passport.authenticate('google', {scope: ['profile', 'email']})(request, response, next);
+    passport.authenticate('google', {scope: ['profile', 'email','user']})(request, response, next);
 });
 //app.use( '/auth/google/callback',callback);
 app.get('/auth/google/callback', 
