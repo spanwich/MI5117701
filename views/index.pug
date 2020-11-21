@@ -7,10 +7,12 @@ block content
             div.col-md-6
                 h1= title
                 p Welcome to #{title}
-            div.col-md-6  
+            div.col-md-3  
                 div.mx-auto.text-right
-                    input(type='button', value='LOGOUT' onclick="location.href='/logout'").btn.btn-dark
                     input(type='button', value='NEW BOOK!' onclick='page_create()').btn.btn-info
+            div.col-md-3  
+                div.mx-auto.text-right
+                    input(type='button', value='I am Hungry!' onclick="location.href='/api/randomwalk'").btn.btn-info
         div#payloader.row
             table(style='width:100%', border='1', id='bookTable')
                 thead
@@ -24,6 +26,10 @@ block content
                         th Last_Modified
                         th Created_Date
                         th Edit/Delete
+        div.row
+            div.col-md-12 
+                div.mx-auto.text-right
+                    input(type='button', value='LOGOUT' onclick="location.href='/logout'").btn.btn-danger
 						
   <!-- Modal -->
   div#editModal.modal

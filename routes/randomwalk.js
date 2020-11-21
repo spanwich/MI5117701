@@ -2,7 +2,7 @@
 var express = require('express');
 var router = express.Router();
 
-var request = require('request');
+var Request = require('request');
 var cheerio = require('cheerio');
 
 /* GET users listing. */
@@ -28,8 +28,8 @@ router.get('/', function (req, res) {
 			jsonresult = JSON.parse(body);
 			var destination = jsonresult.results.url;
 			console.log(destination);
-			
-			res.send(body);
+			res.redirect(destination);
+			//res.send(body);
 		});
 	});
 });
