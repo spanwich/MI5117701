@@ -32,9 +32,11 @@ passport.use(new GoogleStrategy({
   },
   function(request, accessToken, refreshToken, profile, done) {
 	console.log("access token: ", accessToken);
-    User.findOrCreate({ googleId: profile.id }, function (err, user) {
-      return done(err, user);
-    });
+	console.log(profile.emails[0].value);
+	console.log(profile.id[0].value);
+    //User.findOrCreate({ googleId: profile.id }, function (err, user) {
+    //  return done(err, user);
+    //});
   }
 ));
 // uncomment after placing your favicon in /public
@@ -64,7 +66,7 @@ app.get('/auth/google/callback',
         //failureRedirect: '/auth/google/failure'
 		console.log(req);
 		console.log("login callback process");
-		jwt.sign({userId: req.user._id}, process.env.ACCESS_TOKEN_SECRET, {expiresIn:'5 min'}, (err, token) => {
+		jwt.sign({userId: req.profile.id}, process.env.ACCESS_TOKEN_SECRET, {expiresIn:'5 min'}, (err, token) => {
 			if(err){
 				res.sendStatus(500);
 			} else {
