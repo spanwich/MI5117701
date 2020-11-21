@@ -6,7 +6,8 @@ const path = require('path');
 const passport = require('passport');
 const favicon = require('serve-favicon');
 const logger = require('morgan');
-const session = require('express-session');
+//const session = require('express-session');
+const session = require('cookie-session');
 const cookieParser = require('cookie-parser');
 const bodyParser = require('body-parser');
 const jwt = require('jsonwebtoken');
@@ -27,23 +28,6 @@ app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'pug');
 //set passport strategy
 var GoogleStrategy = require( 'passport-google-oauth2' ).Strategy;
-/* passport.use(new GoogleStrategy({
-    clientID:     process.env.GOOGLE_CLIENT_ID,
-    clientSecret: process.env.GOOGLE_CLIENT_SECRET,
-    callbackURL: "https://mi5117701.herokuapp.com/auth/google/callback",
-    passReqToCallback   : true
-  },
-  function(request, accessToken, refreshToken, profile, done) {
-	console.log("access token: ", accessToken);
-	console.log(profile.id);
-	user = {'id':profile.id }
-    //User.findOrCreate({ googleId: profile.id }, function (err, user) {
-    //  return done(err, user);
-    //});
-	return done(null, user);
-  }
-)); */
-
 passport.use(new GoogleStrategy({
 		clientID: process.env.GOOGLE_CLIENT_ID,
 		clientSecret: process.env.GOOGLE_CLIENT_SECRET,
@@ -66,7 +50,7 @@ passport.use(new GoogleStrategy({
 //app.use(favicon(__dirname + '/public/favicon.ico'));
 app.use(session({
 	secret: 'ssshhhhh', 
-	expires: false,
+	expires: new Date(Date.now() + (86400 * 1000),
 	resave: true,
 	saveUninitialized: true
   }));
@@ -141,7 +125,6 @@ app.use(function (req, res, next) {
 });
 
 // error handlers
-console.log(process.env);
 // development error handler
 // will print stacktrace
 if (app.get('env') === 'development') {

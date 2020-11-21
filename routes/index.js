@@ -20,17 +20,17 @@ router.get('/', function (req, res) {
 });
 
 router.get('/login', function (req, res) {
-	res.clearCookie("jwt");
-	//sess = req.session;
-	//let accessToken = req.cookies.jwt
-	//sess.accessToken = accessToken
-    //if there is no token stored in cookies, the request is unauthorized
-    //if (!sess.accessToken){
-    //    res.render('login', { title: 'User Authentication' });
-    //}
-    //else {
-	//	res.redirect('/'); 
-	//}
+	//res.clearCookie("jwt");
+	sess = req.session;
+	let accessToken = req.cookies.jwt
+	sess.accessToken = accessToken
+	//if there is no token stored in cookies, the request is unauthorized
+	if (!sess.accessToken){
+	    res.render('login', { title: 'User Authentication' });
+	}
+	else {
+		res.redirect('/'); 
+	}
 });
 
 router.get('/create', function (req, res) {
