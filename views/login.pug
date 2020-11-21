@@ -19,13 +19,10 @@ block content
             div.col-md-1
               input.btn.btn-primary(type='button', value='Login', onclick='submit_login()')
           div.row
-            div.col-md-3 
-              button.btn.btn-lg.btn-google.btn-block.text-uppercase(href='/auth/google')
-                i.fab.fa-google.mr-2
-                  |  Sign in with Google
-              button.btn.btn-lg.btn-facebook.btn-block.text-uppercase(href='#')
-                i.fab.fa-facebook-f.mr-2
-                  |  Sign in with Facebook
+            div.col-md-12 
+              a.btn.btn-lg.btn-google.btn-block.text-uppercase.btn-outline(href='/auth/google')
+                  img(src='https://img.icons8.com/color/16/000000/google-logo.png')
+                  |  Login Using Google
        
   script
     include ../public/script2.js
