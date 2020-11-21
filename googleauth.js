@@ -7,7 +7,7 @@ exports.google = function(req, res){
 }
 
 exports.callback = function (req, res){
-    passport.authenticate('google', (req, res) {
+    passport.authenticate('google', function (req, res) {
         //successRedirect: '/auth/google/success',
         //failureRedirect: '/auth/google/failure'
 		console.log(req);
