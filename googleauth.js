@@ -3,11 +3,11 @@ const jwt = require('jsonwebtoken');
 const passport = require('passport');
 
 exports.google = function(req, res){
-	passport.authenticate('google', { scope: [ 'email', 'profile' ] }
+	passport.authenticate('google', { scope: [ 'email', 'profile' ] });
 }
 
 exports.callback = function (req, res){
-    passport.authenticate( 'google', {
+    passport.authenticate('google', function(req, res) {
         //successRedirect: '/auth/google/success',
         //failureRedirect: '/auth/google/failure'
 		jwt.sign({userId: req.user._id}, process.env.ACCESS_TOKEN_SECRET, {expiresIn:'5 min'}, (err, token) => {
