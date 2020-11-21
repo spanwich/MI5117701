@@ -71,7 +71,7 @@ passport.deserializeUser(function(obj, cb) {
   cb(null, obj);
 });
 
-app.use('/',verify, routes);
+app.use('/', routes);
 app.use('/users',verify, users);
 app.use('/api/database',verify, database);
 app.use('/api/randomwalk',verify, randomwalk);
