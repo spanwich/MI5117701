@@ -6,18 +6,11 @@ var request = require('request');
 var cheerio = require('cheerio');
 
 const mariadb = require('mariadb');
-const conn = mariadb.createConnection({
-     host: 'localhost',
-     user:'xalanaseon',
-     password: '48rH2%36#',
-     databse: 'awt',
-     connectionLimit: 5
-});
 
-const db_host = process.env.DB_HOST || 'localhost'; 
-const db_user = process.env.DB_USER || 'xalanaseon'; 
-const db_pswd = process.env.DB_PSWD || '48rH2%36#'; 
-const db_name = process.env.DB_NAME || 'awt'; 
+const db_host = process.env.DB_HOST; 
+const db_user = process.env.DB_USER; 
+const db_pswd = process.env.DB_PSWD; 
+const db_name = process.env.DB_NAME; 
 
 var respond_code = "";
 
