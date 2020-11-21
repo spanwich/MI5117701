@@ -12,17 +12,14 @@ const client = new Client({
     rejectUnauthorized: false
   }
 });
-
 client.connect();
+//client.query("DROP TABLE IF EXISTS emps");
 
-client.query('SELECT table_schema,table_name FROM information_schema.tables;', (err, res) => {
-  if (err) throw err;
-  for (let row of res.rows) {
-    console.log(JSON.stringify(row));
-  }
-  client.end();
+client.query("SELECT * FROM mi5117701;", (err, res) => {
+    console.log(err, res);
 });
 
+//client.connect();
 var respond_code = "";
 
 /* POST book insert. */
@@ -34,10 +31,10 @@ router.post('/', function (req, res) {
     postData.last_modified_date = new Date();
     postData.created_date = new Date();
 	console.log(db_user);
-    mariadb.createConnection({host: db_host, user: db_user, password: db_pswd, database: db_name})
+    client.connect()
     .then(conn => {
       console.log(postData);
-      conn.query({ namedPlaceholders: true, sql: "INSERT INTO books VALUES (0, :title, :author, :isbn, :publisher, :publication_year, :last_modified_date, :created_date, :created_at, :updated_at)"},
+      client.query({ namedPlaceholders: true, sql: "INSERT INTO books VALUES (0, :title, :author, :isbn, :publisher, :publication_year, :last_modified_date, :created_date, :created_at, :updated_at)"},
         postData, function (error, results, fields) {
            if (error) throw error;
            console.log(results.insertId); // Auto increment id
@@ -49,7 +46,7 @@ router.post('/', function (req, res) {
         .then(rows => {
           res.send(rows);
           console.log(rows); // [{ "1": 1 }]
-          conn.end();
+          client.end();
         })
         .catch(err => {
           console.log(err); 
@@ -73,10 +70,10 @@ router.put('/:id', function (req, res) {
     postData.last_modified_date = new Date();
     postData.created_date = new Date();
 	postData.id = req.params.id;
-    mariadb.createConnection({host: db_host, user: db_user, password: db_pswd, database: db_name})
+    client.connect()
     .then(conn => {
       console.log(postData);
-      conn.query({ namedPlaceholders: true, sql: "UPDATE books SET title=:title, author=:author, isbn=:isbn, publisher=:publisher, publication_year=:publication_year, last_modified_date=:last_modified_date, updated_at=:updated_at WHERE id=:id"},
+      client.query({ namedPlaceholders: true, sql: "UPDATE books SET title=:title, author=:author, isbn=:isbn, publisher=:publisher, publication_year=:publication_year, last_modified_date=:last_modified_date, updated_at=:updated_at WHERE id=:id"},
         postData, function (error, results, fields) {
            if (error) throw error;
            console.log(results.insertId); // Auto increment id
@@ -88,7 +85,7 @@ router.put('/:id', function (req, res) {
         .then(rows => {
           res.send(rows);
           console.log(rows); // [{ "1": 1 }]
-          conn.end();
+          client.end();
         })
         .catch(err => {
           console.log(err); 
@@ -112,10 +109,10 @@ router.delete('/:id', function (req, res) {
     postData.last_modified_date = new Date();
     postData.created_date = new Date();
 	postData.id = req.params.id;
-    mariadb.createConnection({host: db_host, user: db_user, password: db_pswd, database: db_name})
+    client.connect()
     .then(conn => {
       console.log(postData);
-      conn.query({ namedPlaceholders: true, sql: "DELETE FROM books WHERE id=:id"},
+      client.query({ namedPlaceholders: true, sql: "DELETE FROM books WHERE id=:id"},
         postData, function (error, results, fields) {
            if (error) throw error;
            console.log(results.insertId); // Auto increment id
@@ -127,7 +124,7 @@ router.delete('/:id', function (req, res) {
         .then(rows => {
           res.send(rows);
           console.log(rows); // [{ "1": 1 }]
-          conn.end();
+          client.end();
         })
         .catch(err => {
           console.log(err); 
@@ -151,10 +148,10 @@ router.get('/:id', function (req, res) {
     postData.last_modified_date = new Date();
     postData.created_date = new Date();
 	postData.id = req.params.id;
-    mariadb.createConnection({host: db_host, user: db_user, password: db_pswd, database: db_name})
+    client.connect()
     .then(conn => {
       console.log(postData);
-      conn.query({ namedPlaceholders: true, sql: "SELECT * FROM books WHERE id=:id"},
+      client.query({ namedPlaceholders: true, sql: "SELECT * FROM books WHERE id=:id"},
         postData, function (error, results, fields) {
            if (error) throw error;
            console.log(results.insertId); // Auto increment id
@@ -166,7 +163,7 @@ router.get('/:id', function (req, res) {
         .then(rows => {
           res.send(rows);
           console.log(rows); // [{ "1": 1 }]
-          conn.end();
+          client.end();
         })
         .catch(err => {
           console.log(err); 
@@ -190,10 +187,10 @@ router.get('/', function (req, res) {
     postData.last_modified_date = new Date();
     postData.created_date = new Date();
 	postData.id = req.params.id;
-    mariadb.createConnection({host: db_host, user: db_user, password: db_pswd, database: db_name})
+    client.connect()
     .then(conn => {
       console.log(postData);
-      conn.query({ namedPlaceholders: true, sql: "select * FROM books"},
+      client.query({ namedPlaceholders: true, sql: "select * FROM books"},
         postData, function (error, results, fields) {
            if (error) throw error;
            console.log(results.insertId); // Auto increment id
@@ -205,7 +202,7 @@ router.get('/', function (req, res) {
         .then(rows => {
           res.send(rows);
           console.log(rows); // [{ "1": 1 }]
-          conn.end();
+          client.end();
         })
         .catch(err => {
           console.log(err); 
