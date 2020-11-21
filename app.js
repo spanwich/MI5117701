@@ -52,7 +52,10 @@ app.use('/api/database',verify, database);
 app.use('/login', login)
 app.use('/refrsh', refresh)
 
-app.use('/auth/google',google);
+//app.use('/auth/google',google);
+app.get('/auth/google', function(request, response, next) {
+    passport.authenticate('google', {scope: ['profile', 'email']})(request, response, next);
+});
 app.use( '/auth/google/callback',callback);
 
 // catch 404 and forward to error handler
