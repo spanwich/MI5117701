@@ -1,4 +1,4 @@
-#!/bin/bash  
+#!/bin/bash
 export AUTH0_CLIENT_ID="aZffMNN62mQvzU3QSS7bNhf2m1aMSrcQ"
 export AUTH0_DOMAIN="https://dev-ztkqonjm.us.auth0.com"
 export AUTH0_CLIENT_SECRET="282ce3672942e95e0f34e3137502bf605179e6c3fe4a82017e19d48199616948"
@@ -12,3 +12,4 @@ export REFRESH_TOKEN_LIFE=86400
 
 export GOOGLE_CLIENT_ID=247484766052-asaohu5titueg10bt26ngnhmdcb7k3gb.apps.googleusercontent.com
 export GOOGLE_CLIENT_SECRET=pRfvs9wliQ1bFDHzge4g0qiK
+export DATABASE_URL=postgres://ncdxorefcgysrm:81d35351ad1935824967fc97b64c4c97f6fc8929f7db1997e548dfc93777f82c@ec2-54-158-190-214.compute-1.amazonaws.com:5432/df3vftaid5ouv

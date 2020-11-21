@@ -15,8 +15,14 @@ block content
           input.form-control(name='password', type='password')
 
         div.form-actions
-          input.btn.btn-primary(type='button', value='Login', onclick='submit_login()')
-    div#my-signin2
+          div.row
+            div.col-md-1
+              input.btn.btn-primary(type='button', value='Login', onclick='submit_login()')
+            div.col-md-1
+            div.col-md-3 
+              div#my-signin2
+		  
+        
   script
     include ../public/script2.js
 
