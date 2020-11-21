@@ -32,8 +32,7 @@ passport.use(new GoogleStrategy({
   },
   function(request, accessToken, refreshToken, profile, done) {
 	console.log("access token: ", accessToken);
-	console.log(profile.emails[0].value);
-	console.log(profile.id);
+	console.log(profile);
     //User.findOrCreate({ googleId: profile.id }, function (err, user) {
     //  return done(err, user);
     //});
@@ -56,7 +55,7 @@ app.use('/refrsh', refresh)
 
 //app.use('/auth/google',google);
 app.get('/auth/google',
-  passport.authenticate('google', { scope: ['https://www.googleapis.com/auth/plus.login'] }));
+  passport.authenticate('google', { scope: ['https://www.googleapis.com/auth/plus.login','email','openid','profile'] }));
 //app.use( '/auth/google/callback',callback);
 app.get('/auth/google/callback', 
   passport.authenticate('google', { failureRedirect: '/login' }),
