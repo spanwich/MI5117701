@@ -120,7 +120,7 @@ app.get('/auth/google/callback', passport.authenticate('google', { scope: ['emai
 			} else {
 				//res.json({token});
 				res.cookie("jwt", token, {secure: true, httpOnly: true})
-				res.redirect(302, '/');
+				//res.redirect(302, '/');
 				//res.send()
 			}
 		});		
