@@ -50,7 +50,7 @@ passport.use(new GoogleStrategy({
 //app.use(favicon(__dirname + '/public/favicon.ico'));
 app.use(session({
 	secret: 'ssshhhhh', 
-	expires: new Date(Date.now() + (86400 * 1000),
+	expires: new Date(Date.now() + (86400 * 1000)),
 	resave: true,
 	saveUninitialized: true
   }));
