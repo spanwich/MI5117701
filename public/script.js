@@ -78,8 +78,8 @@ $(document).ready(function() {
 			},
 			error: function(response){
 				document.cookie = 'jwt=; Path=/; Expires=Thu, 01 Jan 1970 00:00:01 GMT;';
-				localStorage.removeItem('jwt')
-				sessionStorage.removeItem('jwt')
+				localStorage.removeItem('jwt');
+				sessionStorage.removeItem('jwt');
 				document.location.href="/login";
 			}
 		});
@@ -118,8 +118,8 @@ $(document).ready(function() {
 			},
 			error: function(response){
 				document.cookie = 'jwt=; Path=/; Expires=Thu, 01 Jan 1970 00:00:01 GMT;';
-				localStorage.removeItem('jwt')
-				sessionStorage.removeItem('jwt')
+				localStorage.removeItem('jwt');
+				sessionStorage.removeItem('jwt');
 				document.location.href="/login";
 			}
 		});
@@ -137,8 +137,8 @@ $(document).ready(function() {
                 console.log(code);
 				window.alert("Session Expired!");
 				document.cookie = 'jwt=; Path=/; Expires=Thu, 01 Jan 1970 00:00:01 GMT;';
-				localStorage.removeItem('jwt')
-				sessionStorage.removeItem('jwt')
+				localStorage.removeItem('jwt');
+				sessionStorage.removeItem('jwt');
 				document.location.href="/login";
             }
 		},
