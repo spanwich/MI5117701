@@ -23,7 +23,7 @@ exports.verify = function(req, res, next){
         //if an error occured return request unauthorized error
 		console.log(e)
 		res.clearCookie("jwt");
-		if(err instanceof jwt.TokenExpiredError) {
+		if(e instanceof jwt.TokenExpiredError) {
             return res.redirect('/login'); 
         }
         return res.status(401).send()
