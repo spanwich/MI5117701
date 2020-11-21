@@ -3,6 +3,7 @@ require('dotenv').config()
 const debug = require('debug');
 const express = require('express');
 const path = require('path');
+const passport = require('passport');
 const favicon = require('serve-favicon');
 const logger = require('morgan');
 const session = require('express-session');
@@ -11,7 +12,7 @@ const bodyParser = require('body-parser');
 
 const routes = require('./routes/index');
 const users = require('./routes/users');
-const book = require('./routes/book');
+const database = require('./routes/database');
 
 const app = express();
 
@@ -20,7 +21,20 @@ const {verify} = require('./middleware')
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'pug');
-
+//set passport strategy
+var GoogleStrategy = require( 'passport-google-oauth2' ).Strategy;
+passport.use(new GoogleStrategy({
+    clientID:     process.env.GOOGLE_CLIENT_ID,
+    clientSecret: process.env.GOOGLE_CLIENT_SECRET,
+    callbackURL: "https://mi5117701.herokuapp.com/auth/google/callback",
+    passReqToCallback   : true
+  },
+  function(request, accessToken, refreshToken, profile, done) {
+    User.findOrCreate({ googleId: profile.id }, function (err, user) {
+      return done(err, user);
+    });
+  }
+));
 // uncomment after placing your favicon in /public
 //app.use(favicon(__dirname + '/public/favicon.ico'));
 app.use(session({secret: 'ssshhhhh', expires: Date.now() + process.env.REFRESH_TOKEN_SECRET}));
@@ -32,9 +46,20 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', routes);
 app.use('/users', users);
-app.use('/api/book',verify, book);
+app.use('/api/database',verify, database);
 app.use('/login', login)
 app.use('/refrsh', refresh)
+
+app.get('/auth/google',
+  passport.authenticate('google', { scope:
+      [ 'email', 'profile' ] }
+));
+
+app.get( '/auth/google/callback',
+    passport.authenticate( 'google', {
+        successRedirect: '/auth/google/success',
+        failureRedirect: '/auth/google/failure'
+}));
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
