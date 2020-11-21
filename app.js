@@ -20,7 +20,7 @@ const book = require('./routes/book');
 const randomwalk = require('./routes/randomwalk');
 const app = express();
 
-const {login, refresh} = require('./authentication')
+const {signin, refresh} = require('./authentication')
 //const {google, callback, success, failure} = require('./googleauth')
 const {verify} = require('./middleware')
 // view engine setup
@@ -76,8 +76,9 @@ app.use('/users', users);
 app.use('/api/database',verify, database);
 app.use('/api/randomwalk',verify, randomwalk);
 app.use('/api/book',verify, book);
-app.use('/login', login);
-app.use('/refrsh', refresh);
+app.use('/api/signin', signin);
+//app.use('/login', login);
+app.use('/api/refrsh', refresh);
 /* 
 //app.use('/auth/google',google);
 app.get('/auth/google',

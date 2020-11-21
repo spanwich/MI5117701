@@ -80,7 +80,7 @@ $(document).ready(function() {
 				document.cookie = 'jwt=; Path=/; Expires=Thu, 01 Jan 1970 00:00:01 GMT;';
 				localStorage.removeItem('jwt')
 				sessionStorage.removeItem('jwt')
-				location.href='/login'
+				document.location.href="/login";
 			}
 		});
     });
@@ -138,7 +138,7 @@ $(document).ready(function() {
 				document.cookie = 'jwt=; Path=/; Expires=Thu, 01 Jan 1970 00:00:01 GMT;';
 				localStorage.removeItem('jwt')
 				sessionStorage.removeItem('jwt')
-				document.location.href="/";
+				document.location.href="/login";
             }
 		},
 		columns: [

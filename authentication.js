@@ -6,7 +6,7 @@ let users = {
     mary: {password:"passwordmary"}
 }
 
-exports.login = function(req, res){
+exports.signin = function(req, res){
     let username = req.body.username
     let password = req.body.password
     
