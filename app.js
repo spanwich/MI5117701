@@ -33,10 +33,11 @@ passport.use(new GoogleStrategy({
   function(request, accessToken, refreshToken, profile, done) {
 	console.log("access token: ", accessToken);
 	console.log(profile.id);
+	user = {'id':profile.id }
     //User.findOrCreate({ googleId: profile.id }, function (err, user) {
     //  return done(err, user);
     //});
-	return done(null, profile.id);
+	return done(null, user);
   }
 ));
 // uncomment after placing your favicon in /public
