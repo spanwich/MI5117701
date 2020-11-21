@@ -41,12 +41,21 @@ passport.use(new GoogleStrategy({
 ));
 // uncomment after placing your favicon in /public
 //app.use(favicon(__dirname + '/public/favicon.ico'));
-app.use(session({secret: 'ssshhhhh', expires: Date.now() + process.env.REFRESH_TOKEN_SECRET}));
+app.use(session({
+	secret: 'ssshhhhh', 
+	expires: Date.now() + process.env.REFRESH_TOKEN_SECRET
+	secret: 'ssshhhhh',
+	resave: true,
+	saveUninitialized: true
+  }));
 app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
+
+app.use(passport.initialize());
+app.use(passport.session());
 
 app.use('/', routes);
 app.use('/users', users);
