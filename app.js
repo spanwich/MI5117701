@@ -16,6 +16,7 @@ const routes = require('./routes/index');
 const users = require('./routes/users');
 const database = require('./routes/database');
 const book = require('./routes/book');
+const randomwalk = require('./routes/randomwalk');
 const app = express();
 
 const {login, refresh} = require('./authentication')
@@ -89,9 +90,10 @@ passport.deserializeUser(function(obj, cb) {
 app.use('/', routes);
 app.use('/users', users);
 app.use('/api/database',verify, database);
+app.use('/api/randomwalk',verify, randomwalk);
 app.use('/api/book',verify, book);
-app.use('/login', login)
-app.use('/refrsh', refresh)
+app.use('/login', login);
+app.use('/refrsh', refresh);
 /* 
 //app.use('/auth/google',google);
 app.get('/auth/google',
@@ -123,6 +125,12 @@ app.get('/auth/google/callback', passport.authenticate('google', { scope: ['emai
 	// Redirect to budgeteer after the session has been set
 	res.redirect("/");
 });   
+   
+app.get('/logout', function (req, res){
+  req.session.destroy(function (err) {
+    res.redirect('/'); //Inside a callback… bulletproof!
+  });
+});
    
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
