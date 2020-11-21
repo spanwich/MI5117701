@@ -61,22 +61,8 @@ app.get('/auth/google', function(request, response, next) {
 //app.use( '/auth/google/callback',callback);
 app.get('/auth/google/callback', 
     passport.authenticate('google'),
-    (req, res) => {
-        //successRedirect: '/auth/google/success',
-        //failureRedirect: '/auth/google/failure'
-		console.log(req);
-		console.log("login callback process");
-		jwt.sign({userId: req.profile.id}, process.env.ACCESS_TOKEN_SECRET, {expiresIn:'5 min'}, (err, token) => {
-			if(err){
-				res.sendStatus(500);
-			} else {
-				//res.json({token});
-				res.cookie("jwt", token, {secure: false, httpOnly: false})
-				res.redirect(302, '/');
-				//res.send()
-			}
-		});	
-    }
+	successRedirect: '/auth/google/success',
+    failureRedirect: '/auth/google/failure'
 );
 
 // catch 404 and forward to error handler
