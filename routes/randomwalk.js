@@ -30,8 +30,8 @@ router.get('/', function (req, res) {
 			console.log(destination);
 			
 			res.send(body);
-		}
-	}
+		});
+	});
 });
 
 module.exports = router;
