@@ -10,6 +10,8 @@ exports.callback = function (req, res){
     passport.authenticate('google', function(req, res) {
         //successRedirect: '/auth/google/success',
         //failureRedirect: '/auth/google/failure'
+		console.log(req);
+		console.log("login callback process");
 		jwt.sign({userId: req.user._id}, process.env.ACCESS_TOKEN_SECRET, {expiresIn:'5 min'}, (err, token) => {
 			if(err){
 				res.sendStatus(500);
