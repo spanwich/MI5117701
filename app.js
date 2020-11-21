@@ -55,16 +55,15 @@ app.use('/login', login)
 app.use('/refrsh', refresh)
 
 //app.use('/auth/google',google);
-app.get('/auth/google', function(request, response, next) {
-    passport.authenticate('google', {scope: ['profile', 'email']})(request, response, next);
-});
+app.get('/auth/google',
+  passport.authenticate('google', { scope: ['https://www.googleapis.com/auth/plus.login'] }));
 //app.use( '/auth/google/callback',callback);
 app.get('/auth/google/callback', 
-    passport.authenticate('google'),
-	successRedirect: '/auth/google/success',
-    failureRedirect: '/auth/google/failure'
-);
-
+  passport.authenticate('google', { failureRedirect: '/login' }),
+  function(req, res) {
+    res.redirect('/');
+  });
+  
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
     var err = new Error('Not Found');
