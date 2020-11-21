@@ -29,8 +29,9 @@ router.get('/login', function (req, res) {
 	    res.render('login', { title: 'User Authentication' });
 	}
 	else {
-		res.redirect('/'); 
-	}
+		res.clearCookie("jwt");
+		//res.redirect('/'); 
+	}	
 });
 
 router.get('/create', function (req, res) {
