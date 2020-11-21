@@ -52,6 +52,7 @@ passport.use(new GoogleStrategy({
 			token : accessToken
 		};
 		try {
+			console.log(user);
 			done(null, user);
 		} catch (error) {
 			console.log(error);
@@ -74,6 +75,14 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use(passport.initialize());
 app.use(passport.session());
+
+passport.serializeUser(function(user, cb) {
+  cb(null, user);
+});
+
+passport.deserializeUser(function(obj, cb) {
+  cb(null, obj);
+});
 
 app.use('/', routes);
 app.use('/users', users);
