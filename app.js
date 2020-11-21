@@ -46,7 +46,11 @@ passport.use(new GoogleStrategy({
 		callbackURL: 'https://mi5117701.herokuapp.com/auth/google/callback'
 	},
 	function(accessToken, refreshToken, profile, done) {
-		
+		var user = {
+			id : profile.id,
+			token : accessToken
+		};
+		done(null, user);
 	}
 ));
 // uncomment after placing your favicon in /public
