@@ -25,8 +25,10 @@ function submit_create() {
 		},
 		error: function(response){
 			window.alert("Session Expired!");
-			//document.cookie = 'jwt=; Path=/; Expires=Thu, 01 Jan 1970 00:00:01 GMT;';
-			document.location.href="/logout";
+			document.cookie = 'jwt=; Path=/; Expires=Thu, 01 Jan 1970 00:00:01 GMT;';
+			localStorage.removeItem('jwt');
+			sessionStorage.removeItem('jwt');
+			document.location.href="/";
 		}
 	});
 };
