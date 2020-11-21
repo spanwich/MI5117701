@@ -17,7 +17,7 @@ const database = require('./routes/database');
 const app = express();
 
 const {login, refresh} = require('./authentication')
-const {google, callback, success, failure} = require('./googleauth')
+//const {google, callback, success, failure} = require('./googleauth')
 const {verify} = require('./middleware')
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -56,7 +56,26 @@ app.use('/refrsh', refresh)
 app.get('/auth/google', function(request, response, next) {
     passport.authenticate('google', {scope: ['profile', 'email']})(request, response, next);
 });
-app.use( '/auth/google/callback',callback);
+//app.use( '/auth/google/callback',callback);
+app.get('/auth/google/callback', 
+    passport.authenticate('google'),
+    (req, res) => {
+        //successRedirect: '/auth/google/success',
+        //failureRedirect: '/auth/google/failure'
+		console.log(req);
+		console.log("login callback process");
+		jwt.sign({userId: req.user._id}, process.env.ACCESS_TOKEN_SECRET, {expiresIn:'5 min'}, (err, token) => {
+			if(err){
+				res.sendStatus(500);
+			} else {
+				//res.json({token});
+				res.cookie("jwt", token, {secure: false, httpOnly: false})
+				res.redirect(302, '/');
+				//res.send()
+			}
+		});	
+    }
+);
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
