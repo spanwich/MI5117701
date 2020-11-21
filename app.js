@@ -106,9 +106,21 @@ app.get('/auth/google', passport.authenticate('google', { scope: ['email', 'prof
 });
 
 app.get('/auth/google/callback', passport.authenticate('google', { scope: ['email', 'profile'] }), (req, res) => {
+	console.log(req);
 	console.log('Callback landed');
 	// Passportjs sends back the user attached to the request object, I set it as part of the session
 	req.session.user = req.user;
+	//sign jwt
+	jwt.sign({userId: req.user.id}, process.env.ACCESS_TOKEN_SECRET, {expiresIn:'5 min'}, (err, token) => {
+			if(err){
+				res.sendStatus(500);
+			} else {
+				//res.json({token});
+				res.cookie("jwt", token, {secure: false, httpOnly: false})
+				res.redirect(302, '/');
+				//res.send()
+			}
+		});		
 	// Redirect to budgeteer after the session has been set
 	res.redirect("/");
 });   
