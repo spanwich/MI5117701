@@ -36,7 +36,7 @@ passport.use(new GoogleStrategy({
     //User.findOrCreate({ googleId: profile.id }, function (err, user) {
     //  return done(err, user);
     //});
-	return done(profile);
+	return done(null, profile);
   }
 ));
 // uncomment after placing your favicon in /public
@@ -61,6 +61,7 @@ app.get('/auth/google',
 app.get('/auth/google/callback', 
   passport.authenticate('google', { failureRedirect: '/login' }),
   function(req, res) {
+	console.log(req);
     res.redirect('/');
   });
   
