@@ -71,26 +71,15 @@ passport.deserializeUser(function(obj, cb) {
   cb(null, obj);
 });
 
-app.use('/', routes);
-app.use('/users', users);
+app.use('/',verify, routes);
+app.use('/users',verify, users);
 app.use('/api/database',verify, database);
 app.use('/api/randomwalk',verify, randomwalk);
 app.use('/api/book',verify, book);
 app.use('/api/signin', signin);
 //app.use('/login', login);
 app.use('/api/refrsh', refresh);
-/* 
-//app.use('/auth/google',google);
-app.get('/auth/google',
-  passport.authenticate('google', { scope: ['https://www.googleapis.com/auth/plus.login','email','openid','profile'] }));
-//app.use( '/auth/google/callback',callback);
-app.get('/auth/google/callback', 
-  passport.authenticate('google', { failureRedirect: '/login' }),
-  function(req, res) {
-	console.log(req);
-    res.redirect('/');
-  });
-   */
+
 app.get('/auth/google', passport.authenticate('google', { scope: ['email', 'profile'] }), (req, res) => {
 	console.log("Logging in via Google");
 });
@@ -112,10 +101,13 @@ app.get('/auth/google/callback', passport.authenticate('google', { scope: ['emai
 });   
    
 app.get('/logout', function (req, res){
-  req.session.destroy(function (err) {
+	req.session = null;
+	res.clearCookie('jwt', {secure: true, httpOnly: true, path:'/'});
+    res.redirect('/login'); //Inside a callback… bulletproof!
+/*   req.session.destroy(function (err) {
 	res.clearCookie('jwt', {secure: true, httpOnly: true, path:'/'});
     res.redirect('/'); //Inside a callback… bulletproof!
-  });
+  }); */
 });
    
 // catch 404 and forward to error handler
