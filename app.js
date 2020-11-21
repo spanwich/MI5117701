@@ -120,12 +120,13 @@ app.get('/auth/google/callback', passport.authenticate('google', { scope: ['emai
 			} else {
 				//res.json({token});
 				res.cookie("jwt", token, {secure: true, httpOnly: true})
-				//res.redirect(302, '/');
+				res.redirect(302, '/');
+				//res.redirect("/");
 				//res.send()
 			}
 		});		
 	// Redirect to budgeteer after the session has been set
-	res.redirect("/");
+	//res.redirect("/");
 });   
    
 // catch 404 and forward to error handler
