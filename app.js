@@ -32,7 +32,7 @@ passport.use(new GoogleStrategy({
   },
   function(request, accessToken, refreshToken, profile, done) {
 	console.log("access token: ", accessToken);
-	console.log(profile);
+	console.log(profile.id);
     //User.findOrCreate({ googleId: profile.id }, function (err, user) {
     //  return done(err, user);
     //});
