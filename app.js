@@ -120,7 +120,7 @@ app.get('/auth/google/callback', passport.authenticate('google', { scope: ['emai
         algorithm: "HS512",
         expiresIn: process.env.REFRESH_TOKEN_LIFE
     });
-	res.cookie("jwt", accessToken, {secure: true, httpOnly: true})
+	res.cookie("jwt", accessToken, {secure: true, httpOnly: true, path:'/'})
     //res.send()
 	// Redirect to budgeteer after the session has been set
 	res.redirect("/");
@@ -128,7 +128,7 @@ app.get('/auth/google/callback', passport.authenticate('google', { scope: ['emai
    
 app.get('/logout', function (req, res){
   req.session.destroy(function (err) {
-	//res.clearCookie('jwt', {path:'/'});
+	res.clearCookie('jwt', {secure: true, httpOnly: true, path:'/'});
     res.redirect('/'); //Inside a callback… bulletproof!
   });
 });
