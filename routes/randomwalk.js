@@ -13,11 +13,11 @@ router.get('/', function (req, res) {
 		if(error) {
 			return console.dir(error);
 		}
-		jsonresult = JSON.parse(body);
+		var jsonresult = JSON.parse(body);
 		var list_places = jsonresult.results;
 		var counter = list_places.length;
 		var output = Math.floor(Math.random() * counter);
-		place_id = list_places[output].place_id;
+		var place_id = list_places[output].place_id;
 		console.log(place_id);
 		
 		var detail_path = 'https://maps.googleapis.com/maps/api/place/details/json?place_id=' + place_id + '&fields=name,rating,formatted_phone_number,url&key=AIzaSyA-Vm3BkWjVRO0JSgPYF351J6J3931zN5k';
@@ -25,7 +25,7 @@ router.get('/', function (req, res) {
 			if(error) {
 				return console.dir(error);
 			}
-			jsonresult = JSON.parse(body);
+			var jsonresult = JSON.parse(body);
 			var destination = jsonresult.results.url;
 			console.log(destination);
 			res.redirect(destination);
