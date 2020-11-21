@@ -26,6 +26,7 @@ router.get('/', function (req, res) {
 				return console.dir(error);
 			}
 			var jsonresult = JSON.parse(body);
+			console.log(jsonresult);
 			var destination = jsonresult.results.url;
 			console.log(destination);
 			res.redirect(destination);
