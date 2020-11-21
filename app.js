@@ -36,7 +36,7 @@ passport.use(new GoogleStrategy({
     //User.findOrCreate({ googleId: profile.id }, function (err, user) {
     //  return done(err, user);
     //});
-	return done(err, profile);
+	return done(profile);
   }
 ));
 // uncomment after placing your favicon in /public
