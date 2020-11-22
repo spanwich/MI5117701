@@ -44,15 +44,7 @@ router.post('/', function (req, res) {
           console.log(rows); // [{ "1": 1 }]
           client.end();
         })
-        .catch(err => {
-          console.log(err); 
-          //handle query error
-        });
     })
-    .catch(err => {
-      console.log(err);
-      //handle connection error
-    });
     //res.send(respond_code);
 });
 
@@ -77,22 +69,7 @@ router.put('/:id', function (req, res) {
            respond_code = JSON.stringify(results);
            res.end(JSON.stringify(results));
         })
-        //"INSERT INTO books value (?,?,?,?,?,?,?,?,?);",
-        //postData)
-        .then(rows => {
-          res.send(rows);
-          console.log(rows); // [{ "1": 1 }]
-          client.end();
-        })
-        .catch(err => {
-          console.log(err); 
-          //handle query error
-        });
     })
-    .catch(err => {
-      console.log(err);
-      //handle connection error
-    });
     //res.send(respond_code);
 });
 
@@ -117,22 +94,7 @@ router.delete('/:id', function (req, res) {
            respond_code = JSON.stringify(results);
            res.end(JSON.stringify(results));
         })
-        //"INSERT INTO books value (?,?,?,?,?,?,?,?,?);",
-        //postData)
-        .then(rows => {
-          res.send(rows);
-          console.log(rows); // [{ "1": 1 }]
-          client.end();
-        })
-        .catch(err => {
-          console.log(err); 
-          //handle query error
-        });
     })
-    .catch(err => {
-      console.log(err);
-      //handle connection error
-    });
     //res.send(respond_code);
 });
 
@@ -157,22 +119,7 @@ router.get('/:id', function (req, res) {
            respond_code = JSON.stringify(results);
            res.end(JSON.stringify(results));
         })
-        //"INSERT INTO books value (?,?,?,?,?,?,?,?,?);",
-        //postData)
-        .then(rows => {
-          res.send(rows);
-          console.log(rows); // [{ "1": 1 }]
-          client.end();
-        })
-        .catch(err => {
-          console.log(err); 
-          //handle query error
-        });
     })
-    .catch(err => {
-      console.log(err);
-      //handle connection error
-    });
     //res.send(respond_code);
 });
 
@@ -197,22 +144,7 @@ router.get('/', function (req, res) {
            respond_code = JSON.stringify(results);
            res.end(JSON.stringify(results));
         })
-        //"INSERT INTO books value (?,?,?,?,?,?,?,?,?);",
-        //postData)
-        .then(rows => {
-          res.send(rows);
-          console.log(rows); // [{ "1": 1 }]
-          client.end();
-        })
-        .catch(err => {
-          console.log(err); 
-          //handle query error
-        });
     })
-    .catch(err => {
-      console.log(err);
-      //handle connection error
-    });
     //res.send(respond_code);
 });
 module.exports = router;
