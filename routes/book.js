@@ -33,7 +33,6 @@ router.post('/', function (req, res) {
     postData.updated_at = new Date();
     postData.last_modified_date = new Date();
     postData.created_date = new Date();
-	console.log(db_user);
     client.connect()
     .then(conn => {
       console.log(postData);
