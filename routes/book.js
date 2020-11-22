@@ -47,8 +47,8 @@ router.post('/', function (req, res) {
     })
     .catch(err => {
       console.log(err);
-	  var err = new Error('Service Unavailable');
-	  err.status = 503;
+      var err = new Error('Not Found');
+      err.status = 404;
       //handle connection error
     });
     //res.send(respond_code);
@@ -88,8 +88,8 @@ router.put('/:id', function (req, res) {
     })
     .catch(err => {
       console.log(err);
-	  var err = new Error('Service Unavailable');
-	  err.status = 503;
+      var err = new Error('Not Found');
+      err.status = 404;
       //handle connection error
     });
     //res.send(respond_code);
@@ -129,8 +129,8 @@ router.delete('/:id', function (req, res) {
     })
     .catch(err => {
       console.log(err);
-	  var err = new Error('Service Unavailable');
-	  err.status = 503;
+      var err = new Error('Not Found');
+      err.status = 404;
       //handle connection error
     });
     //res.send(respond_code);
@@ -170,8 +170,8 @@ router.get('/:id', function (req, res) {
     })
     .catch(err => {
       console.log(err);
-	  var err = new Error('Service Unavailable');
-	  err.status = 503;
+      var err = new Error('Not Found');
+      err.status = 404;
       //handle connection error
     });
     //res.send(respond_code);
@@ -211,8 +211,8 @@ router.get('/', function (req, res) {
     })
     .catch(err => {
       console.log(err);
-	  var err = new Error('Service Unavailable');
-	  err.status = 503;
+      var err = new Error('Not Found');
+      err.status = 404;
       //handle connection error
     });
     //res.send(respond_code);
