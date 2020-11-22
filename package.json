@@ -44,6 +44,7 @@
     "pug": "^3.0.0",
     "request": "^2.88.2",
     "sequelize": "^6.3.5",
-    "serve-favicon": "^2.5.0"
+    "serve-favicon": "^2.5.0",
+    "yesql": "^4.1.3"
   }
 }
