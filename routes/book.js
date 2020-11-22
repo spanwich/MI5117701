@@ -37,13 +37,6 @@ router.post('/', function (req, res) {
            respond_code = JSON.stringify(results);
            res.end(JSON.stringify(results));
         })
-        //"INSERT INTO books value (?,?,?,?,?,?,?,?,?);",
-        //postData)
-        .then(rows => {
-          res.send(rows);
-          console.log(rows); // [{ "1": 1 }]
-          client.end();
-        })
     })
     //res.send(respond_code);
 });
