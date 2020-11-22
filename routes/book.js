@@ -37,8 +37,8 @@ router.post('/', function (req, res) {
 			   console.log(error);
 			   res.end(error);
 		   }
-           console.log(result.rows); // Auto increment id
-           res.end(result.rows);
+           console.log(results.rows); // Auto increment id
+           res.end(results.rows);
         })
     })
     //res.send(respond_code);
@@ -64,8 +64,8 @@ router.put('/:id', function (req, res) {
 			   console.log(error);
 			   res.end(error);
 		   }
-           console.log(result.rows); // Auto increment id
-           res.end(result.rows);
+           console.log(results.rows); // Auto increment id
+           res.end(results.rows);
         })
     })
     //res.send(respond_code);
@@ -91,8 +91,8 @@ router.delete('/:id', function (req, res) {
 			   console.log(error);
 			   res.end(error);
 		   }
-           console.log(result.rows); // Auto increment id
-           res.end(result.rows);
+           console.log(results.rows); // Auto increment id
+           res.end(results.rows);
         })
     })
     //res.send(respond_code);
@@ -118,7 +118,7 @@ router.get('/:id', function (req, res) {
 			   console.log(error);
 			   res.end(error);
 		   }
-           console.log(result.rows); // Auto increment id
+           console.log(results.rows); // Auto increment id
            res.end(results.rows);
         })
     })
@@ -145,8 +145,8 @@ router.get('/', function (req, res) {
 			   console.log(error);
 			   res.end(error);
 		   }
-           console.log(result.rows); // Auto increment id
-           res.end(result.rows);
+           console.log(results.rows); // Auto increment id
+           res.end(results.rows);
         })
     })
     //res.send(respond_code);
