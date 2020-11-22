@@ -35,7 +35,7 @@ router.post('/', function (req, res) {
 		client.query(named("INSERT INTO books(title, author, isbn, publisher, publication_year, last_modified_date, created_date, created_at, updated_at) VALUES (:title, :author, :isbn, :publisher, :publication_year, :last_modified_date, :created_date, :created_at, :updated_at)")(postData), function (error, results, fields) {
            if (error) {
 			   console.log(error);
-			   res.end();
+			   res.end(error);
 		   }
            console.log(results); // Auto increment id
            res.end(results);
@@ -62,7 +62,7 @@ router.put('/:id', function (req, res) {
         (postData), function (error, results, fields) {
            if (error) {
 			   console.log(error);
-			   res.end();
+			   res.end(error);
 		   }
            console.log(results); // Auto increment id
            res.end(results);
@@ -89,7 +89,7 @@ router.delete('/:id', function (req, res) {
         (postData), function (error, results, fields) {
            if (error) {
 			   console.log(error);
-			   res.end();
+			   res.end(error);
 		   }
            console.log(results); // Auto increment id
            res.end(results);
@@ -116,7 +116,7 @@ router.get('/:id', function (req, res) {
         (postData), function (error, results, fields) {
            if (error) {
 			   console.log(error);
-			   res.end();
+			   res.end(error);
 		   }
            console.log(results); // Auto increment id
            respond_code = JSON.stringify(results.rows);
@@ -144,7 +144,7 @@ router.get('/', function (req, res) {
         (postData), function (error, results, fields) {
            if (error) {
 			   console.log(error);
-			   res.end();
+			   res.end(error);
 		   }
            console.log(results); // Auto increment id
            respond_code = JSON.stringify(results.rows);
