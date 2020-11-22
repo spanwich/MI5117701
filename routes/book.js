@@ -12,9 +12,6 @@ const client = new Client({
     rejectUnauthorized: false
   }
 });
-client.connect();
-//client.query("DROP TABLE IF EXISTS emps");
-
 client.query("SELECT * FROM mi5117701;", (err, res) => {
     console.log(err, res);
 });
