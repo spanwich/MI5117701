@@ -14,8 +14,8 @@ const jwt = require('jsonwebtoken');
 
 //Routes
 const routes = require('./routes/index');
-const users = require('./routes/users');
-const database = require('./routes/database');
+//const users = require('./routes/users');
+//const database = require('./routes/database');
 const book = require('./routes/book');
 const randomwalk = require('./routes/randomwalk');
 const app = express();
@@ -72,8 +72,8 @@ passport.deserializeUser(function(obj, cb) {
 });
 
 app.use('/', routes);
-app.use('/users',verify, users);
-app.use('/api/database',verify, database);
+//app.use('/users',verify, users);
+//app.use('/api/database',verify, database);
 app.use('/api/randomwalk',verify, randomwalk);
 app.use('/api/book',verify, book);
 app.use('/api/signin', signin);
