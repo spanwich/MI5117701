@@ -4,16 +4,13 @@ var router = express.Router();
 
 var request = require('request');
 
-const { Client } = require('pg');
+const { Pool } = require('pg');
 
-const client = new Client({
+const pool = new Pool({
   connectionString: process.env.DATABASE_URL,
   ssl: {
     rejectUnauthorized: false
   }
-});
-client.query("SELECT * FROM mi5117701;", (err, res) => {
-    console.log(err, res);
 });
 
 //const sql = require('yesql')('/myproject/sql/',  {type: 'pg'})
@@ -30,10 +27,11 @@ router.post('/', function (req, res) {
     postData.updated_at = new Date();
     postData.last_modified_date = new Date();
     postData.created_date = new Date();
-    client.connect()
-    .then(conn => {
-      console.log(postData);
-	  client.query(named("INSERT INTO books VALUES (0, :title, :author, :isbn, :publisher, :publication_year, :last_modified_date, :created_date, :created_at, :updated_at)")(postData), function (error, results, fields) {
+    pool.connect((err, client, release) => {
+		if (err) {
+			return console.error('Error acquiring client', err.stack)
+		}	  
+		client.query(named("INSERT INTO books VALUES (0, :title, :author, :isbn, :publisher, :publication_year, :last_modified_date, :created_date, :created_at, :updated_at)")(postData), function (error, results, fields) {
            if (error) throw error;
            console.log(results.insertId); // Auto increment id
            respond_code = JSON.stringify(results);
@@ -68,10 +66,11 @@ router.put('/:id', function (req, res) {
     postData.last_modified_date = new Date();
     postData.created_date = new Date();
 	postData.id = req.params.id;
-    client.connect()
-    .then(conn => {
-      console.log(postData);
-      client.query(named("UPDATE books SET title=:title, author=:author, isbn=:isbn, publisher=:publisher, publication_year=:publication_year, last_modified_date=:last_modified_date, updated_at=:updated_at WHERE id=:id")
+    pool.connect((err, client, release) => {
+		if (err) {
+			return console.error('Error acquiring client', err.stack)
+		}	  
+		client.query(named("UPDATE books SET title=:title, author=:author, isbn=:isbn, publisher=:publisher, publication_year=:publication_year, last_modified_date=:last_modified_date, updated_at=:updated_at WHERE id=:id")
         (postData), function (error, results, fields) {
            if (error) throw error;
            console.log(results.insertId); // Auto increment id
@@ -107,10 +106,11 @@ router.delete('/:id', function (req, res) {
     postData.last_modified_date = new Date();
     postData.created_date = new Date();
 	postData.id = req.params.id;
-    client.connect()
-    .then(conn => {
-      console.log(postData);
-      client.query(named("DELETE FROM books WHERE id=:id")
+    pool.connect((err, client, release) => {
+		if (err) {
+			return console.error('Error acquiring client', err.stack)
+		}
+		client.query(named("DELETE FROM books WHERE id=:id")
         (postData), function (error, results, fields) {
            if (error) throw error;
            console.log(results.insertId); // Auto increment id
@@ -146,10 +146,11 @@ router.get('/:id', function (req, res) {
     postData.last_modified_date = new Date();
     postData.created_date = new Date();
 	postData.id = req.params.id;
-    client.connect()
-    .then(conn => {
-      console.log(postData);
-      client.query(named("SELECT * FROM books WHERE id=:id")
+    pool.connect((err, client, release) => {
+		if (err) {
+			return console.error('Error acquiring client', err.stack)
+		}
+		client.query(named("SELECT * FROM books WHERE id=:id")
         (postData), function (error, results, fields) {
            if (error) throw error;
            console.log(results.insertId); // Auto increment id
@@ -185,10 +186,11 @@ router.get('/', function (req, res) {
     postData.last_modified_date = new Date();
     postData.created_date = new Date();
 	postData.id = req.params.id;
-    client.connect()
-    .then(conn => {
-      console.log(postData);
-      client.query(named("select * FROM books")
+    pool.connect((err, client, release) => {
+		if (err) {
+			return console.error('Error acquiring client', err.stack)
+		}
+		client.query(named("select * FROM books")
         (postData), function (error, results, fields) {
            if (error) throw error;
            console.log(results.insertId); // Auto increment id
