@@ -19,7 +19,7 @@ client.query("SELECT * FROM mi5117701;", (err, res) => {
     console.log(err, res);
 });
 
-const sql = require('yesql')('/myproject/sql/',  {type: 'pg'})
+//const sql = require('yesql')('/myproject/sql/',  {type: 'pg'})
 const named = require('yesql').pg
 
 //client.connect();
