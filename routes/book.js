@@ -38,7 +38,7 @@ router.post('/', function (req, res) {
 			   res.end(error);
 		   }
            console.log(results.rows); // Auto increment id
-           res.end(results.rows);
+           res.end(JSON.stringify(results.rows));
         })
     })
     //res.send(respond_code);
@@ -65,7 +65,7 @@ router.put('/:id', function (req, res) {
 			   res.end(error);
 		   }
            console.log(results.rows); // Auto increment id
-           res.end(results.rows);
+           res.end(JSON.stringify(results.rows));
         })
     })
     //res.send(respond_code);
@@ -92,7 +92,7 @@ router.delete('/:id', function (req, res) {
 			   res.end(error);
 		   }
            console.log(results.rows); // Auto increment id
-           res.end(results.rows);
+           res.end(JSON.stringify(results.rows));
         })
     })
     //res.send(respond_code);
@@ -119,7 +119,7 @@ router.get('/:id', function (req, res) {
 			   res.end(error);
 		   }
            console.log(results.rows); // Auto increment id
-           res.end(results.rows);
+           res.end(JSON.stringify(results.rows));
         })
     })
     //res.send(respond_code);
@@ -146,7 +146,7 @@ router.get('/', function (req, res) {
 			   res.end(error);
 		   }
            console.log(results.rows); // Auto increment id
-           res.end(results.rows);
+           res.end(JSON.stringify(results.rows));
         })
     })
     //res.send(respond_code);
