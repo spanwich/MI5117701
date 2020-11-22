@@ -38,8 +38,7 @@ router.post('/', function (req, res) {
 			   res.end();
 		   }
            console.log(results); // Auto increment id
-           respond_code = JSON.stringify(results);
-           res.end(JSON.stringify(results));
+           res.end(results);
         })
     })
     //res.send(respond_code);
@@ -65,9 +64,8 @@ router.put('/:id', function (req, res) {
 			   console.log(error);
 			   res.end();
 		   }
-           console.log(results.insertId); // Auto increment id
-           respond_code = JSON.stringify(results);
-           res.end(JSON.stringify(results));
+           console.log(results); // Auto increment id
+           res.end(results);
         })
     })
     //res.send(respond_code);
@@ -93,9 +91,8 @@ router.delete('/:id', function (req, res) {
 			   console.log(error);
 			   res.end();
 		   }
-           console.log(results.insertId); // Auto increment id
-           respond_code = JSON.stringify(results);
-           res.end(JSON.stringify(results));
+           console.log(results); // Auto increment id
+           res.end(results);
         })
     })
     //res.send(respond_code);
@@ -121,9 +118,9 @@ router.get('/:id', function (req, res) {
 			   console.log(error);
 			   res.end();
 		   }
-           console.log(results.insertId); // Auto increment id
-           respond_code = JSON.stringify(results);
-           res.end(JSON.stringify(results));
+           console.log(results); // Auto increment id
+           respond_code = JSON.stringify(results.rows);
+           res.end(results.rows);
         })
     })
     //res.send(respond_code);
@@ -149,9 +146,9 @@ router.get('/', function (req, res) {
 			   console.log(error);
 			   res.end();
 		   }
-           console.log(results.insertId); // Auto increment id
-           respond_code = JSON.stringify(results);
-           res.end(JSON.stringify(results));
+           console.log(results); // Auto increment id
+           respond_code = JSON.stringify(results.rows);
+           res.end(JSON.stringify(results.rows));
         })
     })
     //res.send(respond_code);
